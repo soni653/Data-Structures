@@ -7,7 +7,16 @@ class ListNode:
         self.prev = prev
         self.value = value
         self.next = next
-            
+        
+    """Rearranges this ListNode's previous and next pointers
+    accordingly, effectively deleting this ListNode."""
+    def delete(self):
+        if self.prev:
+            self.prev.next = self.next
+        if self.next:
+            self.next.prev = self.prev
+
+      
 """
 Our doubly-linked list class. It holds references to 
 the list's head and tail nodes.
@@ -164,15 +173,46 @@ class DoublyLinkedList:
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        # ! GET THE NODE
+        # ! Node(posX): nodeX.prev.next = nodeX.next
+        # ! Node(posX): nodeX.next.prev = nodeX.prev
+        # ! O(n)
+        
+        temp = node
+        self.delete(node)
+        self.length += 1
+
+        # * 40 -> 1 
+        # * Temp pointer for the node we are searching
+        # * O(1)
+        self.tail.next = temp
+        temp.prev = self.tail
+        self.tail = temp
 
     """
     Deletes the input node from the List, preserving the 
     order of the other elements of the List.
     """
     def delete(self, node):
-        self.delete(node)
-        self.add_to_tail(node.value)
+    
+
+        if not self.head and not self.tail:
+            print('ERROR: Attempted to delete node not in list')
+            return
+        elif self.head ==self.tail:
+            self.head = None
+            self.tail = None
+        elif node == self.head:
+            self.head = self.head.next
+            node.delete()
+        elif node ==self.tail:
+            self.tail = self.tail.prev
+            node.delete()
+        #if node is both
+        else:
+            node.delete()
+        self.length -= 1
+        
 
     """
     Finds and returns the maximum value of all the nodes 
