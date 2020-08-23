@@ -10,6 +10,15 @@ return elements in First In First Out order.
    Make sure the Queue tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Queue?
+
+   The main difference between using an array vs a linked list is the ability to access
+# elements of the data structure via indexing. This is possible in arrays but if you
+# work with linked lists it will make a difference on how you operate
+# on the underlying structure. Since arrays are a core part of python programming,
+# we can use python ready methods to manipulate our data. Arrays can have their elements
+# directly called upon through indexing. When working with linked lists, we have to 
+# iterate through the list to find the values we need, and we have to use customized
+# methods to do so.
    
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
